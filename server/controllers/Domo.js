@@ -28,9 +28,8 @@ const makeDomo = async (req, res) => {
   try {
     const newDomo = new Domo(domoData);
     await newDomo.save();
-    // I know the code said to use res.json({ redirect: '/maker' });
-    // but that didn't work
-    return res.redirect('/maker');
+    
+    return res.json({ redirect: '/maker' });
   } catch (err) {
     console.log(err);
     if (err.code === 11000) {

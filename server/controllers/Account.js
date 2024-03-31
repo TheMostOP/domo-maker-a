@@ -26,9 +26,7 @@ const login = (req, res) => {
 
     req.session.account = Account.toAPI(account);
 
-    // I know the code said to use res.json({ redirect: '/maker' });
-    // but that didn't work
-    return res.redirect('/maker');
+    return res.json({ redirect: '/maker' });
   });
 };
 
@@ -50,9 +48,8 @@ const signup = async (req, res) => {
     const newAccount = new Account({ username, password: hash });
     await newAccount.save();
     req.session.account = Account.toAPI(newAccount);
-    // I know the code said to use res.json({ redirect: '/maker' });
-    // but that didn't work
-    return res.redirect('/maker');
+    
+    return res.json({ redirect: '/maker' });
   } catch (err) {
     console.log(err);
     if (err.code === 11000) {
